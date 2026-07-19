@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一人公司的 AI 軍團 · 黃金三角提示詞產生器</title>
+<meta name="description" content="T Planner 技能變現專班 Week 1 — 10 個黃金三角提示詞範本，選職位、填三要素、一鍵複製到 AI。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#0099BB; --cyan-d:#007A96; --cyan-soft:#E4F5FA; --navy:#0A1628;
+  --ink:#1C1C1E; --sub:#5A5A5F; --gray:#8E8E93; --bg:#FFFFFF; --bg2:#F5F5F7;
+  --border:#E1E1E6; --orange:#E8600F; --green:#2C9247;
+  --font:'Inter','Noto Sans TC',-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+a{color:var(--cyan);text-decoration:none}
+
+/* Navbar */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav .brand{font-weight:800;font-size:16px;color:var(--ink)}
+.nav .brand b{color:var(--cyan)}
+.nav .tag{font-size:12px;color:var(--gray);font-weight:600}
+
+/* Hero */
+.hero{background:var(--navy);color:#fff;padding:56px 0 48px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-100px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.14),transparent 70%)}
+.hero .ov{font-size:12px;font-weight:800;letter-spacing:3px;color:#5FD3EE;position:relative}
+.hero h1{font-size:40px;font-weight:900;line-height:1.15;margin:14px 0 12px;position:relative}
+.hero h1 span{color:#5FD3EE}
+.hero p{font-size:17px;color:#B8C4CC;max-width:640px;position:relative}
+.hero .motto{margin-top:20px;font-size:14px;font-weight:700;color:#fff;position:relative}
+.hero .motto b{color:#5FD3EE}
+.stats{display:flex;gap:36px;margin-top:26px;position:relative;flex-wrap:wrap}
+.stats .n{font-size:30px;font-weight:900;color:#5FD3EE}
+.stats .l{font-size:13px;color:#9FB0BC}
+
+/* Section */
+section{padding:44px 0}
+.sec-t{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--cyan);margin-bottom:6px}
+.sec-h{font-size:26px;font-weight:900;margin-bottom:22px}
+
+/* Info card */
+.info{background:var(--cyan-soft);border:1px solid var(--cyan);border-radius:14px;padding:24px 26px}
+.info h3{font-size:18px;font-weight:800;color:var(--cyan-d);margin-bottom:14px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tri .box{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.tri .k{font-weight:800;font-size:15px;margin-bottom:4px}
+.tri .k.r{color:var(--cyan)} .tri .k.c{color:var(--orange)} .tri .k.e{color:var(--green)}
+.tri .d{font-size:13px;color:var(--sub)}
+
+/* Filter */
+.filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.filter button{font-family:var(--font);font-size:14px;font-weight:600;padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);background:#fff;color:var(--sub);cursor:pointer;transition:.18s}
+.filter button:hover{border-color:var(--cyan);color:var(--cyan)}
+.filter button.on{background:var(--cyan);border-color:var(--cyan);color:#fff}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;cursor:pointer;transition:.18s;display:flex;flex-direction:column}
+.card:hover{border-color:var(--cyan);box-shadow:0 8px 24px rgba(0,153,187,.10);transform:translateY(-2px)}
+.card .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 11px;border-radius:100px;margin-bottom:12px;align-self:flex-start}
+.card h4{font-size:18px;font-weight:800;margin-bottom:8px;line-height:1.35}
+.card .ctx{font-size:13px;color:var(--sub);flex:1}
+.card .go{margin-top:14px;font-size:13px;font-weight:700;color:var(--cyan)}
+.bd-content{background:var(--cyan-soft);color:var(--cyan-d)}
+.bd-service{background:#FDEEE3;color:var(--orange)}
+.bd-plan{background:#E7F5EB;color:var(--green)}
+.bd-research{background:#EDE9FE;color:#6B4FD8}
+.bd-assist{background:#FFF3E0;color:#C77800}
+
+/* Modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(10,22,40,.55);z-index:200;padding:20px;overflow-y:auto}
+.modal-bg.show{display:block}
+.modal{background:#fff;max-width:760px;margin:32px auto;border-radius:18px;padding:0;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-h{background:var(--navy);color:#fff;padding:22px 26px;position:relative}
+.modal-h .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 11px;border-radius:100px;margin-bottom:10px;background:rgba(95,211,238,.2);color:#5FD3EE}
+.modal-h h3{font-size:21px;font-weight:900}
+.modal-h .x{position:absolute;top:18px;right:22px;font-size:26px;color:#9FB0BC;cursor:pointer;line-height:1;background:none;border:none}
+.modal-b{padding:24px 26px}
+.modal-ctx{background:var(--bg2);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--sub);margin-bottom:20px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-weight:800;font-size:14px;margin-bottom:6px}
+.fld label.r{color:var(--cyan)} .fld label.c{color:var(--orange)} .fld label.e{color:var(--green)}
+.fld textarea{width:100%;font-family:var(--font);font-size:14px;line-height:1.6;color:var(--ink);border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;resize:vertical;background:#fff}
+.fld textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,153,187,.1)}
+.fld.r textarea{min-height:60px} .fld.c textarea{min-height:96px} .fld.e textarea{min-height:130px}
+.tip{background:#FDEEE3;border-radius:10px;padding:10px 14px;font-size:12.5px;color:var(--orange);margin-bottom:18px}
+.tip b{font-weight:800}
+.btns{display:flex;gap:10px}
+.btn{font-family:var(--font);font-weight:700;font-size:15px;padding:12px 22px;border-radius:10px;border:none;cursor:pointer;transition:.18s}
+.btn-p{background:var(--cyan);color:#fff;flex:1}
+.btn-p:hover{background:var(--cyan-d)}
+.btn-s{background:var(--bg2);color:var(--ink);border:1.5px solid var(--border)}
+.out{margin-top:18px;display:none}
+.out.show{display:block}
+.out .lbl{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--gray);margin-bottom:6px}
+.out pre{background:var(--navy);color:#E4F5FA;border-radius:12px;padding:18px;font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-word;font-family:var(--font);max-height:320px;overflow-y:auto}
+.copy{margin-top:10px;width:100%;background:var(--green);color:#fff}
+.copy.done{background:var(--cyan-d)}
+
+/* Security / tools / instructor */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px 24px}
+.panel h3{font-size:17px;font-weight:800;margin-bottom:12px}
+.panel ul{list-style:none;font-size:14px;color:var(--sub)}
+.panel li{padding:5px 0;padding-left:22px;position:relative}
+.panel li::before{content:"›";position:absolute;left:6px;color:var(--cyan);font-weight:800}
+.tools{display:flex;flex-wrap:wrap;gap:10px}
+.tools a{font-size:13px;font-weight:600;padding:8px 15px;border-radius:100px;background:#fff;border:1px solid var(--border);color:var(--ink)}
+.tools a:hover{border-color:var(--cyan);color:var(--cyan)}
+.inst{background:var(--navy);color:#fff;border-radius:16px;padding:28px 30px;margin-top:30px}
+.inst h3{font-size:20px;font-weight:900;margin-bottom:6px}
+.inst .role{color:#5FD3EE;font-weight:700;font-size:14px;margin-bottom:14px}
+.inst p{color:#B8C4CC;font-size:14px;max-width:760px}
+footer{background:var(--navy);color:#9FB0BC;text-align:center;padding:28px 0;font-size:13px}
+footer b{color:#fff}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--green);color:#fff;padding:12px 24px;border-radius:100px;font-weight:700;font-size:14px;z-index:300;transition:.3s;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:680px){
+  .hero h1{font-size:30px}.tri{grid-template-columns:1fr}.two{grid-template-columns:1fr}
+  .stats{gap:22px}.sec-h{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <div class="brand">一人公司的 <b>AI 軍團</b></div>
+  <div class="tag">黃金三角提示詞產生器</div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="ov">T PLANNER 技能變現專班 · WEEK 1</div>
+  <h1>選職位、填三要素，<br><span>一鍵複製</span>給 AI</h1>
+  <p>10 個一人公司最常用的黃金三角提示詞範本。挑一個、把範例改成你的狀況、複製到 Gemini 或 ChatGPT 就能用。</p>
+  <div class="motto"><b>會用</b> → <b>懂用</b> → <b>好用</b> → <b>每天用</b></div>
+  <div class="stats">
+    <div><div class="n">400+</div><div class="l">合作企業</div></div>
+    <div><div class="n">300+</div><div class="l">場課程</div></div>
+    <div><div class="n">10,000+</div><div class="l">學員人次</div></div>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="info">
+    <h3>黃金三角：好答案 ＝ 角色 × 情境 × 期望</h3>
+    <div class="tri">
+      <div class="box"><div class="k r">角色 R</div><div class="d">讓 AI 扮演誰（設高：40 年經驗）</div></div>
+      <div class="box"><div class="k c">情境 C</div><div class="d">背景、給誰看、什麼目的</div></div>
+      <div class="box"><div class="k e">期望 E</div><div class="d">要什麼格式、多長、什麼語氣</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-t">CHOOSE A TEMPLATE</div>
+  <div class="sec-h">挑一個範本開始</div>
+  <div class="filter" id="filter"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section style="background:var(--bg2)"><div class="wrap">
+  <div class="two">
+    <div class="panel">
+      <h3>🔒 用之前提醒你</h3>
+      <ul>
+        <li>不要輸入公司機密、客戶個資、帳號密碼</li>
+        <li>真實姓名／金額可以先用代號（如「A 客戶」）</li>
+        <li>AI 產出一定要自己看過再用，別照單全收</li>
+        <li>數字、來源類的內容，記得查證</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>🛠 課程用到的 AI 工具</h3>
+      <div class="tools">
+        <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Gemini</a>
+        <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>
+        <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a>
+        <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a>
+        <a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a>
+      </div>
+      <p style="font-size:13px;color:var(--sub);margin-top:14px">本課主力：<b style="color:var(--cyan)">Gemini</b>（免費就能用，寫東西、查資料都行）</p>
+    </div>
+  </div>
+  <div class="inst">
+    <h3>黃敬峰 AI峰哥</h3>
+    <div class="role">企業 AI 實戰培訓專家 · 交點文化 創辦人</div>
+    <p>台灣領先的企業 AI 實戰培訓專家，自 2022 生成式 AI 元年起深入研究 ChatGPT、Claude、Gemini 等前沿工具。累積 400+ 企業合作、300+ 場課程、10,000+ 學員人次。教學心法：會用、懂用、好用、每天用。</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>一人公司的 AI 軍團</b> · T Planner 技能變現專班 Week 1 · 2026.07.22<br>
+  講師 黃敬峰 AI峰哥 · <a href="https://www.autolab.cloud" target="_blank" rel="noopener" style="color:#5FD3EE">autolab.cloud</a> · ai@autolab.cloud
+</div></footer>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-h">
+      <span class="badge" id="mBadge"></span>
+      <button class="x" onclick="closeModal()">×</button>
+      <h3 id="mTitle"></h3>
+    </div>
+    <div class="modal-b">
+      <div class="modal-ctx" id="mCtx"></div>
+      <div class="fld r"><label class="r">👤 角色 R</label><textarea id="fR"></textarea></div>
+      <div class="fld c"><label class="c">📋 情境 C</label><textarea id="fC"></textarea></div>
+      <div class="fld e"><label class="e">🎯 期望 E</label><textarea id="fE"></textarea></div>
+      <div class="tip" id="mTip"></div>
+      <div class="btns">
+        <button class="btn btn-p" onclick="gen()">⚡ 產生完整指令</button>
+        <button class="btn btn-s" onclick="closeModal()">關閉</button>
+      </div>
+      <div class="out" id="out">
+        <div class="lbl">完整指令（複製貼到 AI）</div>
+        <pre id="outPre"></pre>
+        <button class="btn copy" id="copyBtn" onclick="copyOut()">📋 複製指令</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast">已複製！貼到 Gemini 就能用 ✓</div>
+
+<script>
+const CATS={content:"內容編輯",service:"客服",plan:"企劃",research:"研究員",assist:"助理"};
+const DATA=[
+{cat:"content",title:"把模糊想法變成吸睛貼文",ctx:"你想在 IG 宣傳新服務／課程，但腦中只有模糊想法，不知道怎麼寫成貼文。",
+R:"你是一位有 40 年經驗的資深內容編輯，專精社群與品牌文案，最擅長用第一句話就抓住讀者的注意力。",
+C:"我是一位教「一人公司如何用 AI」的自由講師，最近推出一堂 4 週線上課，主打「不用請人，用 AI 把自己變成一支團隊」。目標讀者是想接案、經營自媒體、但一個人忙不過來的工作者。我想在 Instagram 發一則貼文吸引他們報名。",
+E:"1. 第一句用有畫面感的鉤子，點出「一個人做到累」的痛\n2. 中間用 3 點說明這堂課能解決什麼\n3. 結尾有明確行動呼籲（報名連結放留言）\n4. 語氣口語、親切，像朋友聊天\n5. 約 200 字，適度用 emoji 和換行，方便手機讀",
+tip:"把「講師」換成你的身份、把「線上課」換成你的產品或服務。"},
+{cat:"service",title:"回覆一則讓你頭痛的客訴",ctx:"客戶對服務不滿意、語氣不太好，你不知道怎麼回才不會讓事情更糟。",
+R:"你是一位有 40 年經驗的客戶關係專家，最擅長化解衝突、把不滿的客戶變成長期支持者，說話溫暖但有分寸。",
+C:"我是一位接案設計師，一位合作 2 年的老客戶剛傳訊息抱怨，說我這次交的稿子跟他想的不一樣、拖到他的進度，語氣有點生氣。其實這次需求他中途改過兩次，但我不想翻舊帳、也不想失去這個客戶。",
+E:"1. 先真誠同理他的心情，不急著解釋\n2. 用不指責的方式帶到「需求有調整過」這件事\n3. 提出一個具體補救方案（例如優先修改、加快時程）\n4. 結尾讓他感覺被重視、願意繼續合作\n5. 語氣專業但有溫度，約 150 字",
+tip:"把接案身份、客戶抱怨的內容換成你真實遇過的狀況。"},
+{cat:"plan",title:"寫一份讓客戶秒懂價值的報價說明",ctx:"客戶問「這個案子多少錢」，你想寫得清楚、有價值感、不會被隨便砍價。",
+R:"你是一位有 40 年經驗的接案報價顧問，最擅長把「報價」寫成「價值說明」，讓客戶覺得物超所值，而不是只看到數字。",
+C:"我是一位自由影片剪輯師，有位客戶想請我剪一支 3 分鐘的品牌形象片，含腳本協助、字幕、配樂、兩次修改。我的報價是 NT$18,000。我想寄一份報價說明給他，避免他一看到價格就嫌貴。",
+E:"1. 開頭先簡短說明我理解他要的成果\n2. 把服務拆成幾個項目，讓他看到每一項的價值\n3. 報價數字放在價值說明「之後」\n4. 附上「這個價格包含什麼、不包含什麼」把範圍講清楚\n5. 語氣專業自信，約 200 字",
+tip:"把服務項目、金額換成你自己的報價內容。"},
+{cat:"content",title:"生出一集 Podcast／影片的完整大綱",ctx:"你有一個主題想錄，但不知道怎麼安排段落、講什麼才不會散掉。",
+R:"你是一位有 40 年經驗的節目製作人，最擅長把一個主題，設計成有起承轉合、聽眾捨不得關掉的內容結構。",
+C:"我經營一個談「自由工作者生存」的 Podcast，這集想聊「接案新手最常犯的 3 個報價錯誤」。聽眾多是剛開始接案、還不太會定價的年輕人，單集長度約 20 分鐘。",
+E:"1. 給 3 個會讓人想點進來的集數標題備選\n2. 開場 30 秒的鉤子怎麼講\n3. 中間 3 個錯誤，每個附一個具體例子和建議\n4. 結尾的行動呼籲和下集預告\n5. 標出每個段落大概幾分鐘",
+tip:"把主題、聽眾樣貌換成你的節目設定。"},
+{cat:"content",title:"把一堆語音筆記整理成一篇文章",ctx:"你邊走邊用語音記了一堆想法，很亂，想整理成一篇通順的文章。",
+R:"你是一位有 40 年經驗的資深編輯，最擅長把零散、跳躍的口語內容，整理成邏輯清楚又好讀的文章，同時保留作者原本的口吻。",
+C:"我把今天的想法用手機語音轉成文字（貼在最後），內容是關於「為什麼一人工作者更需要學 AI」，但講得很跳、有重複、有口語贅字。我想整理成一篇約 800 字、可以發在部落格的文章。",
+E:"1. 幫我抓出核心論點，重新排出邏輯順序\n2. 去掉重複和口語贅字，但保留我親切的口吻\n3. 下一個吸引人的標題\n4. 分成 3–4 個小段，每段有小標\n5. 結尾收在一個讓人有共鳴的句子\n\n【素材：（把語音轉文字貼在這）】",
+tip:"把語音轉文字內容貼在指令最後的【素材】。"},
+{cat:"plan",title:"寫一段讓人記得住的自我介紹",ctx:"要在提案、社群 bio、活動場合介紹自己，但總覺得寫得很生硬。",
+R:"你是一位有 40 年經驗的個人品牌顧問，最擅長幫人找到定位，用一段話就讓人記住「你是誰、能幫我什麼」。",
+C:"我是一位斜槓工作者，本業是行銷企劃，同時經營一個教人做 AI 簡報的 IG 帳號。我常要在合作邀約、活動開場自我介紹，但每次都講得落落長又抓不到重點。目標對象是想學 AI 工具的上班族。",
+E:"1. 一句話版（社群 bio 用，30 字內）\n2. 短版（活動開場用，約 60 字，口語）\n3. 正式版（合作提案用，約 120 字）\n4. 每個版本都要點出「我能幫對方什麼」\n5. 語氣自信但不浮誇",
+tip:"把本業、經營的內容換成你的斜槓組合。"},
+{cat:"service",title:"回覆一封合作邀約 email",ctx:"有人來信邀約合作，你想回得專業、又能問到關鍵資訊、還不失禮。",
+R:"你是一位有 40 年經驗的商務溝通顧問，最擅長寫出得體、專業、又能推進合作的商務書信。",
+C:"我是一位插畫接案者，收到一間文具品牌的合作邀約 email，對方想找我設計一組貼圖，但信裡沒講清楚預算、授權範圍和時程。我有興趣，但需要問清楚才能評估，同時不想顯得太計較。",
+E:"1. 先表達對合作的興趣和感謝\n2. 用禮貌的方式問清楚：預算、授權範圍、期望完成時間\n3. 簡短帶出我的專業和過往經驗，建立信任\n4. 結尾主動提議下一步（例如通話或線上會議）\n5. 語氣專業友善，約 180 字",
+tip:"把接案類型、對方邀約的內容換成你的狀況。"},
+{cat:"content",title:"一次發想一整個月的內容選題",ctx:"你知道要固定發文，但每次都卡在「今天到底要發什麼」。",
+R:"你是一位有 40 年經驗的內容策略師，最擅長圍繞一個主題，發想出源源不絕又不重複的內容選題。",
+C:"我經營一個教「手機攝影」的 IG 帳號，粉絲多是想把生活拍得更好看的一般人。我想一次規劃一整個月（每週 3 篇、共 12 篇）的貼文選題，讓我不用每天想破頭。",
+E:"1. 分成 3 種類型：教學技巧、觀念破解、實際案例\n2. 每個選題附一句「這篇的鉤子／角度」\n3. 選題由淺入深，適合新手到進階\n4. 用表格呈現：週次｜類型｜選題｜鉤子\n5. 額外推薦哪 3 篇最適合衝觸及",
+tip:"把「手機攝影」換成你的主題、把粉絲樣貌換成你的受眾。"},
+{cat:"research",title:"把落落長的資料摘要成重點",ctx:"你有一份很長的文件要看，但沒時間，想快速抓出能用的重點。",
+R:"你是一位有 40 年經驗的資深研究助理，最擅長從大量資料中，快速抓出關鍵重點和可行動的結論。",
+C:"我要準備一場關於「2026 行銷趨勢」的分享，手上有一篇很長的產業報告（貼在最後），但我只有 30 分鐘準備。我需要快速抓出可以放進分享的重點。",
+E:"1. 用 5 個重點條列最關鍵的發現\n2. 每個重點用一句白話說明「這對我的聽眾意味什麼」\n3. 挑出 2–3 個可以直接引用的數據或金句\n4. 最後給我一句適合當分享開場的鉤子\n5. 如果內容有互相矛盾或存疑的地方，幫我標出來\n\n【資料：（貼在這）】",
+tip:"把主題換成你的需求、把長資料貼在指令最後。"},
+{cat:"assist",title:"寫一封不尷尬的請款提醒信",ctx:"案子做完了，對方遲遲沒付款，你想催款又怕傷感情。",
+R:"你是一位有 40 年經驗的財務溝通專家，最擅長寫出既能收到款、又不破壞關係的請款與提醒信件。",
+C:"我是一位接案文案寫手，一個月前交付了案子、也寄了請款單，但客戶到現在還沒付款（金額 NT$12,000）。我們合作愉快，我不想撕破臉，但這筆款項對我的現金流很重要。",
+E:"1. 開頭先自然地問候，不要一開口就談錢\n2. 用不指責的語氣提醒款項還沒收到，附上原本的請款資訊\n3. 給一個明確但客氣的付款期限\n4. 保留合作的善意，讓對方好下台階\n5. 語氣專業溫和，約 150 字",
+tip:"把金額、交付內容換成你實際的請款狀況。"}
+];
+const BADGE={content:"bd-content",service:"bd-service",plan:"bd-plan",research:"bd-research",assist:"bd-assist"};
+let cur=null, curFilter="all";
+
+function renderFilter(){
+  const f=document.getElementById('filter');
+  const cats=["all",...Object.keys(CATS)];
+  f.innerHTML=cats.map(c=>`<button data-c="${c}" class="${c==='all'?'on':''}" onclick="setFilter('${c}')">${c==='all'?'全部':CATS[c]}</button>`).join('');
+}
+function setFilter(c){curFilter=c;document.querySelectorAll('#filter button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));renderGrid();}
+function renderGrid(){
+  const g=document.getElementById('grid');
+  g.innerHTML=DATA.map((d,i)=>({d,i})).filter(x=>curFilter==='all'||x.d.cat===curFilter)
+   .map(({d,i})=>`<div class="card" onclick="openModal(${i})">
+      <span class="badge ${BADGE[d.cat]}">${CATS[d.cat]}</span>
+      <h4>${d.title}</h4>
+      <div class="ctx">${d.ctx}</div>
+      <div class="go">填三要素 → 一鍵複製 →</div>
+    </div>`).join('');
+}
+function openModal(i){
+  cur=i;const d=DATA[i];
+  document.getElementById('mBadge').textContent=CATS[d.cat];
+  document.getElementById('mTitle').textContent=d.title;
+  document.getElementById('mCtx').innerHTML='<b>情境：</b>'+d.ctx;
+  document.getElementById('fR').value=d.R;
+  document.getElementById('fC').value=d.C;
+  document.getElementById('fE').value=d.E;
+  document.getElementById('mTip').innerHTML='<b>💡 換成你的：</b>'+d.tip;
+  document.getElementById('out').classList.remove('show');
+  const cb=document.getElementById('copyBtn');cb.classList.remove('done');cb.textContent='📋 複製指令';
+  document.getElementById('modalBg').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalBg').classList.remove('show');document.body.style.overflow='';}
+function gen(){
+  const r=document.getElementById('fR').value.trim();
+  const c=document.getElementById('fC').value.trim();
+  const e=document.getElementById('fE').value.trim();
+  const p=`【角色】\n${r}\n\n【情境】\n${c}\n\n【期望】\n${e}`;
+  document.getElementById('outPre').textContent=p;
+  document.getElementById('out').classList.add('show');
+  document.getElementById('out').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copyOut(){
+  const t=document.getElementById('outPre').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const cb=document.getElementById('copyBtn');cb.classList.add('done');cb.textContent='✓ 已複製';
+    const to=document.getElementById('toast');to.classList.add('show');
+    setTimeout(()=>to.classList.remove('show'),2200);
+  });
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+renderFilter();renderGrid();
+</script>
+</body>
+</html>
